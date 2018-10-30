@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".lectordni.Login"
+    tools:showIn="@layout/activity_login">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="451dp"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/login_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_centerHorizontal="true"
+
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/campoLogin"
+            android:layout_width="211dp"
+            android:layout_height="41dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="38dp"
+            android:hint="Usuario"
+            tools:layout_editor_absoluteX="80dp"
+            tools:layout_editor_absoluteY="48dp" />
+
+        <EditText
+            android:id="@+id/campoClave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="115dp"
+            android:ems="10"
+            android:hint="Clave"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="132dp" />
+
+        <Button
+            android:id="@+id/bot_ingresar"
+            android:layout_width="253dp"
+            android:layout_height="59dp"
+            android:layout_centerInParent="true"
+            android:text="Ingresar"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="237dp" />
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

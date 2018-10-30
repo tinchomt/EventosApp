@@ -1,9 +1,12 @@
 package mt.com.eventosapp.lectordni;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,20 +31,23 @@ import retrofit2.Response;
 public class RegistraAsistente extends AppCompatActivity {
 
     TextView txtDNI,txtNombre,txtApellido, txtRegistrado;
-    Button botonIngreso;
+    Button botonIngreso, botonRegistraAsist;
     String valor_dni;
     UserService userService;
     Map<String, String> mapaResultados = new TreeMap<String, String>();
     String valores;
+    EditText editObservacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registra_asistente);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         final Intent intent = getIntent();
         valor_dni = intent.getStringExtra("docu");
-        System.out.println("Documento: "+valor_dni);
+        System.out.println("RegistraAsistente Documento: "+valor_dni);
 
         valores = intent.getStringExtra("valores");
         System.out.println("Resultados: "+valores);
@@ -53,37 +59,57 @@ public class RegistraAsistente extends AppCompatActivity {
         }
 
 
+
         userService = APIUtils.getUserService();
 
         txtDNI = (TextView) findViewById(R.id.txtDNI);
         txtNombre = (TextView) findViewById(R.id.txtNombre);
         txtApellido = (TextView) findViewById(R.id.txtApellido);
         txtRegistrado = (TextView) findViewById(R.id.txtRegistrado);
+        editObservacion = (EditText) findViewById(R.id.txtObservacion);
 
         botonIngreso = (Button) findViewById(R.id.btnIngresa);
+        botonRegistraAsist = (Button) findViewById(R.id.btnRegistraAsistente);
 
         getAsistente(valor_dni);
 
         botonIngreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("BOTON");
+                System.out.println("BOTON Ingreso");
                 RegistraEvento registra = new RegistraEvento();
 
-                Long id_evento = Long.valueOf(1);
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                System.out.println("Usuario: "+pref.getLong("id_usuario", 1) );
+                System.out.println("id_evento: "+pref.getLong("id_evento", 0) );
+                System.out.println("id_grupo: "+pref.getLong("id_grupo", 0) );
+
+                Long id_evento = pref.getLong("id_evento", 0) ;
                 Long id_estado = Long.valueOf(2);
-                Long id_usuario = Long.valueOf(2);
+                Long id_usuario = pref.getLong("id_usuario",0);
+                Long id_grupo = pref.getLong("id_grupo", 0);
 
 
-                registra.setDescripcion("");
+                //registra.setDescripcion("");
                 registra.setDni(Long.valueOf(txtDNI.getText().toString()));
                 registra.setNombre(txtNombre.getText().toString());
                 registra.setApellido(txtApellido.getText().toString());
                 registra.setId_evento(id_evento);
                 registra.setId_estado(id_estado);
                 registra.setId_usuario(id_usuario);
+                registra.setDescripcion(editObservacion.getText().toString());
+                registra.setId_grupo(id_grupo);
 
                 registrarAcceso(registra);
+
+            }
+        });
+
+        botonRegistraAsist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i_registrar = new Intent(getBaseContext(),AgregarAsistente.class);
+                startActivity(i_registrar);
 
             }
         });
@@ -111,6 +137,7 @@ public class RegistraAsistente extends AppCompatActivity {
 
                         txtRegistrado.setText("ESTA REGISTRADO");
                         txtRegistrado.setTextColor(Color.rgb(35,158,119));
+                        botonRegistraAsist.setVisibility(View.INVISIBLE);
 
                     }else{
 
@@ -124,6 +151,7 @@ public class RegistraAsistente extends AppCompatActivity {
                         txtNombre.setVisibility(View.INVISIBLE);
                         txtApellido.setVisibility(View.INVISIBLE);
                         botonIngreso.setVisibility(View.INVISIBLE);
+                        botonRegistraAsist.setVisibility(View.VISIBLE);
 
                     }
 
@@ -165,7 +193,6 @@ public class RegistraAsistente extends AppCompatActivity {
             }
         });
     }
-
 
 
     public void parserResultados(String valores){

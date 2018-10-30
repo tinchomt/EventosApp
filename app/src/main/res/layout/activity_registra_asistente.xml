@@ -17,6 +17,7 @@
             android:layout_width="289dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:gravity="center"
             android:text="DNI"
             android:textSize="30dp" />
 
@@ -26,6 +27,7 @@
             android:layout_width="353dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:gravity="center"
             android:text="NOMBRE"
             android:textSize="30dp" />
 
@@ -34,6 +36,7 @@
             android:layout_width="354dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:gravity="center"
             android:text="APELLIDO"
             android:textSize="30dp" />
 
@@ -46,15 +49,37 @@
             android:text="Registrado"
             android:textSize="30dp" />
 
+
+        <EditText
+            android:id="@+id/txtObservacion"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Observaciones"
+            android:inputType="textMultiLine" />
+
         <Button
             android:id="@+id/btnIngresa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginTop="30dp"
             android:background="#32CD32"
             android:text="Ingresar"
             android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btnRegistraAsistente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="30dp"
+            android:background="#32bbcd"
+            android:text="Registrar"
+            android:textColor="#ffffff" />
+
+
 
 
     </LinearLayout>

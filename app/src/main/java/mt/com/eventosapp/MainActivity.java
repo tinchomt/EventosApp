@@ -2,8 +2,10 @@ package mt.com.eventosapp;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -22,6 +24,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.vision.barcode.Barcode;
 
+import mt.com.eventosapp.lectordni.AgregarAsistente;
 import mt.com.eventosapp.lectordni.BuscarAsistente;
 import mt.com.eventosapp.lectordni.CargaPadron;
 import mt.com.eventosapp.lectordni.RegistraAsistente;
@@ -43,6 +46,10 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        System.out.println("Evento: "+pref.getString("evento", "Evento") );
+        getSupportActionBar().setTitle(pref.getString("evento", "Evento"));
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +64,8 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        System.out.println("RegistraAsistente 1");
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -83,8 +92,9 @@ public class MainActivity extends AppCompatActivity
         buscarPorDni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("RegistraAsistente ");
                 //Intent intent = new Intent(getBaseContext(), BuscarAsistente.class);
-                Intent intent = new Intent(getBaseContext(), RegistraAsistente.class);
+                Intent intent = new Intent(MainActivity.this, RegistraAsistente.class);
                 System.out.println("docu: "+var_docu.getText().toString());
                 intent.putExtra("docu",var_docu.getText().toString());
                 startActivity(intent);
@@ -151,11 +161,23 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            //System.out.println("docu: "+var_docu.getText().toString());
+            //intent.putExtra("docu",var_docu.getText().toString());
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(getBaseContext(), AgregarAsistente.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
+          //  Intent intent = new Intent(getBaseContext(), RegistraAsistente.class);
+          //  System.out.println("docu: "+var_docu.getText().toString());
+          //  intent.putExtra("docu",var_docu.getText().toString());
+          //  startActivity(intent);
+
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 

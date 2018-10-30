@@ -3,8 +3,10 @@ package mt.com.eventosapp.remote;
 import java.util.List;
 
 import mt.com.eventosapp.modelo.Asistente;
+import mt.com.eventosapp.modelo.Evento;
 import mt.com.eventosapp.modelo.RegistraEvento;
 import mt.com.eventosapp.modelo.User;
+import mt.com.eventosapp.modelo.Usuario;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -36,6 +38,9 @@ public interface UserService {
     Call<User> deleteUser(@Path("id") int id);
 
 
+    @POST("asistentes/")
+    Call<Asistente> registraAsistente(@Body Asistente asistente);
+
 
     @GET("asistentes/{dni}")
     Call<Asistente> getAsistente(@Path("dni") int dni);
@@ -44,6 +49,16 @@ public interface UserService {
     @POST("registrar-acceso/")
     Call<RegistraEvento> registraAcceso(@Body RegistraEvento registra);
 
+
+    @GET("usuario/{login}/{clave}")
+    Call<Usuario> getUsuario(@Path("login") String login,@Path("clave") String clave );
+
+
+    @GET("eventos/porgrupo/{id_grupo}")
+    Call<List<Evento>> getEventos(@Path("id_grupo") int id_grupo);
+
+    @GET("eventos/")
+    Call<List<Evento>> getEventos();
 
 
 }

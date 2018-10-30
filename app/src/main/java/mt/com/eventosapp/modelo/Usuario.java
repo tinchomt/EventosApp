@@ -5,15 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class RegistraEvento implements Serializable{
+public class Usuario implements Serializable{
 
-   /* @SerializedName("dni")
+    @SerializedName("id_usuario")
     @Expose
-    private Long id;*/
-
-    @SerializedName("descripcion")
-    @Expose
-    private String descripcion;
+    private Long id_usuario;
 
     @SerializedName("dni")
     @Expose
@@ -27,28 +23,33 @@ public class RegistraEvento implements Serializable{
     @Expose
     private String nombre;
 
-    @SerializedName("id_evento")
+    @SerializedName("login")
     @Expose
-    private Long id_evento;
+    private String login;
 
-    @SerializedName("id_usuario")
+    @SerializedName("clave")
     @Expose
-    private Long id_usuario;
+    private String clave;
 
-    @SerializedName("id_estado")
+    @SerializedName("email")
     @Expose
-    private Long id_estado;
+    private String email;
+
+    @SerializedName("descripcion")
+    @Expose
+    private String descripcion;
+
 
     @SerializedName("id_grupo")
     @Expose
     private Long id_grupo;
 
-    public String getDescripcion() {
-        return descripcion;
+    public Long getId_usuario() {
+        return id_usuario;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public Long getDni() {
@@ -75,28 +76,36 @@ public class RegistraEvento implements Serializable{
         this.nombre = nombre;
     }
 
-    public Long getId_evento() {
-        return id_evento;
+    public String getLogin() {
+        return login;
     }
 
-    public void setId_evento(Long id_evento) {
-        this.id_evento = id_evento;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public Long getId_usuario() {
-        return id_usuario;
+    public String getClave() {
+        return clave;
     }
 
-    public void setId_usuario(Long id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
-    public Long getId_estado() {
-        return id_estado;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId_estado(Long id_estado) {
-        this.id_estado = id_estado;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Long getId_grupo() {
@@ -106,5 +115,7 @@ public class RegistraEvento implements Serializable{
     public void setId_grupo(Long id_grupo) {
         this.id_grupo = id_grupo;
     }
+
+
 
 }

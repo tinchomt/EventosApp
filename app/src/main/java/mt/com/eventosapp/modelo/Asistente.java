@@ -45,6 +45,20 @@ public class Asistente {
     @Expose
     private String email;
 
+    @SerializedName("cargo")
+    @Expose
+    private String cargo;
+
+
+    @SerializedName("descripcion")
+    @Expose
+    private String descripcion;
+
+
+    @SerializedName("id_grupo")
+    @Expose
+    private Long id_grupo;
+
     public Long getDni() {
         return dni;
     }
@@ -125,6 +139,29 @@ public class Asistente {
         this.email = email;
     }
 
+    public Long getId_grupo() {
+        return id_grupo;
+    }
+
+    public void setId_grupo(Long id_grupo) {
+        this.id_grupo = id_grupo;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
 
 }

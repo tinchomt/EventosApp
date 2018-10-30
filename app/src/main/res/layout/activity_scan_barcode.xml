@@ -4,7 +4,7 @@
     android:id="@+id/activity_scan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="lector.pyp.com.lectordni.ScanBarcodeActivity">
+    tools:context="mt.com.eventosapp.lectordni.ScanBarcodeActivity">
 
 
     <SurfaceView
